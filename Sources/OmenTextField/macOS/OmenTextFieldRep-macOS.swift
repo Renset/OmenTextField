@@ -36,11 +36,14 @@ import SwiftUI
         }
 
         func updateNSView(_ view: NSTextView, context _: Context) {
-            view.string = text
+            if view.string != text {
+                view.string = text
+            }
+
             DispatchQueue.main.async {
                 height = view.textHeight()
             }
-            
+
             if let isFocused = isFocused?.wrappedValue {
                 DispatchQueue.main.async {
                     let isFirstResponder = view.window?.firstResponder == view
