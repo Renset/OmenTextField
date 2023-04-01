@@ -23,17 +23,15 @@ import SwiftUI
             view.delegate = context.coordinator
             view.textContainerInset = .zero
             view.textContainer?.lineFragmentPadding = 0
-            
-            // Set the initial text using textStorage
-            if let textStorage = view.textStorage {
-                textStorage.beginEditing()
-                textStorage.replaceCharacters(in: NSRange(location: 0, length: textStorage.length), with: text)
-                textStorage.endEditing()
+            view.string = text
+
+            if (view.textHeight() > 0) {
+                DispatchQueue.main.async {
+                    height = view.textHeight()
+                }
             }
             
-            DispatchQueue.main.async {
-                height = view.textHeight()
-            }
+            
             return view
         }
 
