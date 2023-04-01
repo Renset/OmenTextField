@@ -23,6 +23,10 @@ import SwiftUI
             view.delegate = context.coordinator
             view.textContainerInset = .zero
             view.textContainer?.lineFragmentPadding = 0
+            view.allowsUndo = true
+            view.isRichText = false
+            view.isEditable = true
+            view.isSelectable = true
             view.string = text
 
             if (view.textHeight() > 0) {
