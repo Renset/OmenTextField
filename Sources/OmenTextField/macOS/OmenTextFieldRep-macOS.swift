@@ -36,7 +36,7 @@ import SwiftUI
         }
 
         func updateNSView(_ view: NSTextView, context _: Context) {
-            if view.string != "" {
+            if view.string != text && text != "" {
                 view.string = text
                 DispatchQueue.main.async {
                     height = view.textHeight()
