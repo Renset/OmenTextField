@@ -47,6 +47,10 @@ import SwiftUI
                 view.string = text
             }
 
+            if let customFontSize = fontSize {
+                view.font = NSFont.systemFont(ofSize: customFontSize)
+            }
+    
             DispatchQueue.main.async {
                 height = view.textHeight()
             }

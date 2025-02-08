@@ -37,6 +37,10 @@ import SwiftUI
         // MARK: - Update
 
         func updateUIView(_ view: UITextView, context: Context) {
+            if let customFontSize = fontSize {
+                view.font = UIFont.systemFont(ofSize: customFontSize)
+            }
+            
             if view.returnKeyType != returnKeyType.uiReturnKey {
                 view.returnKeyType = returnKeyType.uiReturnKey
                 view.reloadInputViews()
