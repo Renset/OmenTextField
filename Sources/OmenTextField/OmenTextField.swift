@@ -55,6 +55,7 @@ public struct OmenTextField: View {
                 .foregroundColor(.secondary)
                 .opacity(text.isEmpty ? 0.5 : 0)
                 .animation(nil)
+                .font(fontSize.map { .system(size: $0) })
 
             #if os(iOS)
                 OmenTextFieldRep(
