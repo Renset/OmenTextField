@@ -12,13 +12,16 @@ import SwiftUI
         @Binding var text: String
         var isFocused: Binding<Bool>?
         @Binding var height: CGFloat
+        var fontSize: CGFloat?
         var onCommit: (() -> Void)?
         var onTab: (() -> Void)?
         var onBackTab: (() -> Void)?
-
+    
         func makeNSView(context: Context) -> NSTextView {
             let view = CustomNSTextView(rep: self)
-            view.font = NSFont.preferredFont(forTextStyle: .body)
+            if let customFontSize = fontSize {
+                view.font = NSFont.systemFont(ofSize: customFontSize)
+            }
             view.backgroundColor = .clear
             view.delegate = context.coordinator
             view.textContainerInset = .zero
@@ -28,7 +31,7 @@ import SwiftUI
             view.isEditable = true
             view.isSelectable = true
             view.string = text
-
+    
             if (view.textHeight() > 0) {
                 DispatchQueue.main.async {
                     height = view.textHeight()

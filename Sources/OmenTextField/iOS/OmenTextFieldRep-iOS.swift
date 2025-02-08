@@ -12,14 +12,15 @@ import SwiftUI
         @Binding var text: String
         var isFocused: Binding<Bool>?
         @Binding var height: CGFloat
+        var fontSize: CGFloat?
         var returnKeyType: OmenTextField.ReturnKeyType
         var onCommit: (() -> Void)?
 
-        // MARK: - Make
-
         func makeUIView(context: Context) -> UITextView {
             let view = CustomUITextView(rep: self)
-            view.font = UIFont.preferredFont(forTextStyle: .body)
+            if let customFontSize = fontSize {
+                view.font = UIFont.systemFont(ofSize: customFontSize)
+            }
             view.backgroundColor = .clear
             view.delegate = context.coordinator
             view.textContainerInset = .zero

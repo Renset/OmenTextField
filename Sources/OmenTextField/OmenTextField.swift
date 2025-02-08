@@ -13,6 +13,7 @@ public struct OmenTextField: View {
     var isFocused: Binding<Bool>?
     @State var height: CGFloat = 0
     var returnKeyType: ReturnKeyType
+    var fontSize: CGFloat?
     var onCommit: (() -> Void)?
     var onTab: (() -> Void)?
     var onBackTab: (() -> Void)?
@@ -24,6 +25,7 @@ public struct OmenTextField: View {
     ///   - text: The text to display and edit.
     ///   - isFocused: Whether or not the field should be focused.
     ///   - returnKeyType: The type of return key to be used on iOS.
+    ///   - fontSize: The size of the font to be used.
     ///   - onCommit: An action to perform when the user presses the
     ///     Return key) while the text field has focus. If `nil`, a newline
     ///     will be inserted.
@@ -32,6 +34,7 @@ public struct OmenTextField: View {
         text: Binding<String>,
         isFocused: Binding<Bool>? = nil,
         returnKeyType: ReturnKeyType = .default,
+        fontSize: CGFloat? = nil,
         onTab: (() -> Void)? = nil,
         onBackTab: (() -> Void)? = nil,
         onCommit: (() -> Void)? = nil
@@ -40,6 +43,7 @@ public struct OmenTextField: View {
         _text = text
         self.isFocused = isFocused
         self.returnKeyType = returnKeyType
+        self.fontSize = fontSize
         self.onCommit = onCommit
         self.onTab = onTab
         self.onBackTab = onBackTab
@@ -57,6 +61,7 @@ public struct OmenTextField: View {
                     text: $text,
                     isFocused: isFocused,
                     height: $height,
+                    fontSize: fontSize,
                     returnKeyType: returnKeyType,
                     onCommit: onCommit
                 )
@@ -66,6 +71,7 @@ public struct OmenTextField: View {
                     text: $text,
                     isFocused: isFocused,
                     height: $height,
+                    fontSize: fontSize,
                     onCommit: onCommit,
                     onTab: onTab,
                     onBackTab: onBackTab
